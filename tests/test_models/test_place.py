@@ -1,69 +1,96 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+"""Test Place"""
+import unittest
+from datetime import datetime
+from models.base_model import BaseModel
 from models.place import Place
 
 
-class test_Place(test_basemodel):
-    """ """
+class TestPlace(unittest.TestCase):
+    """Test Place file"""
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "Place"
-        self.value = Place
+    def tearDown(self):
+        ''' After tests, remove json file '''
+        try:
+            remove("file.json")
+        except Exception:
+            pass
 
-    def test_city_id(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.city_id), str)
+    def test_class(self):
+        """Test the class."""
+        place1 = Place()
+        self.assertTrue(hasattr(place1, "id"))
+        self.assertTrue(hasattr(place1, "created_at"))
+        self.assertTrue(hasattr(place1, "updated_at"))
+        self.assertEqual(place1.__class__.__name__, "Place")
 
-    def test_user_id(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.user_id), str)
+    def test_father(self):
+        """Test the class - BaseModel """
+        place1 = Place()
+        self.assertTrue(issubclass(place1.__class__, BaseModel))
 
-    def test_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+    def test_class_kwargs(self):
+        """Test the class passing kwargs"""
+        dictonary = {
+            'id': '662a23b3-abc7-4f43-81dc-64c000001c00', 'score': 100}
+        place1 = Place(**dictonary)
+        self.assertTrue(hasattr(place1, "id"))
+        self.assertEqual(place1.id, '662a23b3-abc7-4f43-81dc-64c000001c00')
+        self.assertTrue(hasattr(place1, "score"))
+        self.assertEqual(place1.score, 100)
+        self.assertTrue(hasattr(place1, "created_at"))
+        self.assertTrue(type(place1.updated_at), datetime)
+        self.assertTrue(hasattr(place1, "updated_at"))
+        self.assertTrue(type(place1.created_at), datetime)
+        self.assertEqual(place1.__class__.__name__, "Place")
 
-    def test_description(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.description), str)
+    def test_father_kwargs(self):
+        """Test the class - BaseModel passing kwargs """
+        dictonary = {'id': '662a23b3-abc7-4f43-81dc-64c000000c00'}
+        place1 = Place(**dictonary)
+        self.assertTrue(issubclass(place1.__class__, BaseModel))
 
-    def test_number_rooms(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.number_rooms), int)
+    def test_Place(self):
+        """Test attributes of the class."""
+        my_Place = Place()
+        my_Place.name = "LA"
+        self.assertEqual(my_Place.name, 'LA')
 
-    def test_number_bathrooms(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.number_bathrooms), int)
+    def test_type(self):
+        """Test Place value type."""
+        place1 = Place()
+        self.assertEqual(type(place1.name), str)
+        self.assertNotEqual(type(place1.name), list)
 
-    def test_max_guest(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.max_guest), int)
-
-    def test_price_by_night(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.price_by_night), int)
-
-    def test_latitude(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.latitude), float)
-
-    def test_longitude(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.latitude), float)
-
-    def test_amenity_ids(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.amenity_ids), list)
+    def test_attribute(self):
+        """Test attributes."""
+        place1 = Place()
+        self.assertTrue(hasattr(place1, "updated_at"))
+        self.assertTrue(hasattr(place1, "created_at"))
+        self.assertTrue(hasattr(place1, "id"))
+        self.assertTrue(hasattr(place1, "name"))
+        self.assertEqual(type(place1.updated_at), datetime)
+        self.assertEqual(type(place1.created_at), datetime)
+        self.assertEqual(type(place1.id), str)
+        self.assertEqual(type(place1.name), str)
+        self.assertFalse(hasattr(place1, "brent"))
+        self.assertTrue(hasattr(place1, "city_id"))
+        self.assertEqual(type(place1.city_id), str)
+        self.assertTrue(hasattr(place1, "user_id"))
+        self.assertEqual(type(place1.user_id), str)
+        self.assertTrue(hasattr(place1, "description"))
+        self.assertEqual(type(place1.description), str)
+        self.assertTrue(hasattr(place1, "number_rooms"))
+        self.assertEqual(type(place1.number_rooms), int)
+        self.assertTrue(hasattr(place1, "number_bathrooms"))
+        self.assertEqual(type(place1.number_bathrooms), int)
+        self.assertTrue(hasattr(place1, "max_guest"))
+        self.assertEqual(type(place1.max_guest), int)
+        self.assertTrue(hasattr(place1, "price_by_night"))
+        self.assertEqual(type(place1.price_by_night), int)
+        self.assertTrue(hasattr(place1, "latitude"))
+        self.assertEqual(type(place1.latitude), float)
+        self.assertTrue(hasattr(place1, "longitude"))
+        self.assertEqual(type(place1.longitude), float)
+        self.assertTrue(hasattr(place1, "amenity_ids"))
+        self.assertEqual(type(place1.amenity_ids), list)
