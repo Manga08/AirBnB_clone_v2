@@ -23,7 +23,14 @@ class FileStorage:
 
     def all(self, cls=None):
         '''Returns the dictionary __objects'''
-        return self.__objects
+
+        print_dict = {}
+        for key, value in FileStorage.__objects.items():
+            if isinstance(value, cls):
+                print_dict[key] = value
+        if cls is not None:
+            return print_dict
+        return FileStorage.__objects
 
     def new(self, obj):
         ''' sets in __objects the obj with key <obj class name>.id '''
