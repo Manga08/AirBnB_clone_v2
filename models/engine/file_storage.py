@@ -28,7 +28,7 @@ class FileStorage:
         for key, value in FileStorage.__objects.items():
             if isinstance(value, cls):
                 print_dict[key] = value
-        if cls is not None:
+        if cls is not None and len(print_dict) > 1:
             return print_dict
         return FileStorage.__objects
 
