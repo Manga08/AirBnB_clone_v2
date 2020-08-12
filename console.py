@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
             print("{}".format(obj.id))
         except SyntaxError:
-            print("** class name missing **") 
+            print("** class name missing **")
         except NameError:
             print("** class doesn't exist **")
 
@@ -160,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arg):
         '''Count instances of class passed as arg'''
         cnt = 0
-        for key, value in storage.all().items():
+        for key in storage.all().items():
             instance = key.split('.')[0]
             if instance == arg:
                 cnt += 1
