@@ -58,14 +58,6 @@ class TestCity(unittest.TestCase):
         self.assertEqual(my_City.name, 'Bogota')
         self.assertEqual(my_City.state_id, '571')
 
-    def test_type(self):
-        """Test City value type."""
-        city1 = City()
-        self.assertTrue(hasattr(city1, "name"))
-        self.assertTrue(hasattr(city1, "state_id"))
-        self.assertEqual(type(city1.name), str)
-        self.assertEqual(type(city1.state_id), str)
-
     def test_attribute(self):
         """Test another attributes."""
         city1 = City()

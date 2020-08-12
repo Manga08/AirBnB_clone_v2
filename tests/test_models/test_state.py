@@ -56,12 +56,6 @@ class TestState(unittest.TestCase):
         my_State.name = "LA"
         self.assertEqual(my_State.name, 'LA')
 
-    def test_type(self):
-        """Test State value type."""
-        state1 = State()
-        self.assertEqual(type(state1.name), str)
-        self.assertNotEqual(type(state1.name), list)
-
     def test_attribute(self):
         """Test another attributes."""
         state1 = State()
