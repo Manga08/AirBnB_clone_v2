@@ -50,7 +50,8 @@ class FileStorage:
         '''Deserializes the JSON file to __objects.'''
         try:
             if (os.path.isfile(FileStorage.__file_path)):
-                with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
+                with open(FileStorage.__file_path, 'r',
+                          encoding='utf-8') as file:
                     objs = json.load(file)
                     for key, value in objs.items():
                         FileStorage.__objects[key] = eval(
@@ -64,5 +65,5 @@ class FileStorage:
             if obj is not None:
                 formats = "{}.{}".format(type(obj).__name__, obj.id)
                 del FileStorage.__objects[formats]
-        except:
+        except BaseException:
             pass
