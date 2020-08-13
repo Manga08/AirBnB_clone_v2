@@ -56,12 +56,6 @@ class TestPlace(unittest.TestCase):
         my_Place.name = "LA"
         self.assertEqual(my_Place.name, 'LA')
 
-    def test_type(self):
-        """Test Place value type."""
-        place1 = Place()
-        self.assertEqual(type(place1.name), str)
-        self.assertNotEqual(type(place1.name), list)
-
     def test_attribute(self):
         """Test attributes."""
         place1 = Place()

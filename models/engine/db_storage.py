@@ -30,14 +30,14 @@ class DBStorage:
             getenv("HBNB_MYSQL_DB")), pool_pre_ping=True)
 
         if getenv("HBNB_ENV") == 'test':
-            Base.metadata.drop_all(bind=self.__engine)  # diego estuvo aqui -_-
+            Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
 
         if cls:
             objects = self.__session.query(cls).all()
         else:
-            classes = [State, City, Place, Review, User]
+            classes = [State, City, User, Place, Review, Amenity]
             objects = []
             for c in classes:
                 objects += self.__session.query(c)
@@ -63,7 +63,8 @@ class DBStorage:
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
-        self.__session = sessionmaker(bind=self.__engine,
-                                      expire_on_commit=False)
-        Session = scoped_session(self.__session)
+        Session = scoped_session(
+            sessionmaker(
+                bind=self.__engine,
+                expire_on_commit=False))
         self.__session = Session()

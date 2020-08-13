@@ -29,24 +29,6 @@ class TestState(unittest.TestCase):
         user1 = User()
         self.assertTrue(issubclass(user1.__class__, BaseModel))
 
-    def test_class_kwargs(self):
-        """Test attributes."""
-        user1 = User()
-        self.assertTrue(hasattr(user1, "updated_at"))
-        self.assertTrue(hasattr(user1, "created_at"))
-        self.assertTrue(hasattr(user1, "id"))
-        self.assertTrue(hasattr(user1, "email"))
-        self.assertTrue(hasattr(user1, "password"))
-        self.assertTrue(hasattr(user1, "first_name"))
-        self.assertTrue(hasattr(user1, "last_name"))
-        self.assertEqual(type(user1.updated_at), datetime)
-        self.assertEqual(type(user1.created_at), datetime)
-        self.assertEqual(type(user1.id), str)
-        self.assertFalse(hasattr(user1, "Manga"))
-        self.assertEqual(type(user1.email), str)
-        self.assertEqual(type(user1.password), str)
-        self.assertEqual(type(user1.first_name), str)
-        self.assertEqual(type(user1.last_name), str)
 
     def test_father_kwargs(self):
         """Test the class - BaseModel passing kwargs """
