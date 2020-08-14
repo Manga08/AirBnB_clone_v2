@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, Float, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from os import getenv
 
-place_amenity = Table('place_amenity', metadata=Base.metadata,
+place_amenity = Table('place_amenity', Base.metadata,
                       Column('place_id', String(60),
                              ForeignKey('places.id'), primary_key=True,
                              nullable=False),
