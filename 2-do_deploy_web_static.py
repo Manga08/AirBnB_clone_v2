@@ -18,6 +18,7 @@ def do_pack():
         return None
     return archive
 
+
 def do_deploy(archive_path):
     """Deploy function."""
     if not path.exists(archive_path):
