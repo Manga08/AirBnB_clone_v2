@@ -62,6 +62,7 @@ def deploy():
     else:
         return do_deploy(new_pack)
 
+
 def do_clean(number=0):
     """Deletes out-of-date archives."""
     number = int(number)
