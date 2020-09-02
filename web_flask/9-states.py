@@ -6,14 +6,14 @@ app = Flask(__name__)
 
 
 @app.teardown_appcontext
-"""Remove the current SQLAlchemy session."""
 def app_context(abc):
+    """Remove the current SQLAlchemy session."""
     storage.close()
 
 
 @app.route('/states', strict_slashes=False)
-"""Display a HTML page inside the tag BODY."""
 def all_states():
+    """Display a HTML page inside the tag BODY."""
     states = storage.all('State')
     return render_template('9-states.html', all=states)
 
