@@ -69,3 +69,7 @@ class FileStorage:
                 del FileStorage.__objects[formats]
         except BaseException:
             pass
+
+    def close(self):
+        """Call reload() method for deserializing the JSON objects."""
+        self.reload()
