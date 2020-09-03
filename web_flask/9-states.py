@@ -2,7 +2,10 @@
 """Script that starts a Flask web application."""
 from flask import Flask, render_template
 from models import storage
-app = Flask(__name__)
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+app = Flask(__name__, template_folder='templates')
 
 
 @app.teardown_appcontext
@@ -12,21 +15,11 @@ def app_context(abc):
 
 
 @app.route('/states', strict_slashes=False)
-def all_states():
-    """Display a HTML page inside the tag BODY."""
-    states = storage.all('State')
-    return render_template('9-states.html', all=states)
-
-
 @app.route('/states/<id>', strict_slashes=False)
-def states_id(id):
-    states = storage.all('State')
-
-    for element in states.values():
-        if element.id == id:
-            state = element
-            return render_template('9-states.html', element=state)
-    return render_template('9-states.html')
+def states_list(id='0'):
+    """Display a HTML page inside the tag BODY."""
+    return render_template('9-states.html',
+                           states=storage.all(State).values(), id=id)
 
 
 if __name__ == '__main__':
